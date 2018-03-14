@@ -1,0 +1,27 @@
+﻿@model DBProject.Models.Movie
+@{
+    ViewBag.Title = "AddMovie";
+}
+
+<h2>Add Movie</h2>
+
+@using (Html.BeginForm("AddMovieConfirmation", "Home", FormMethod.Post, new { @onsubmit="return addMovieValidation();" }))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Title)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Title)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="submit" value="ADD MOVIE" />
+            </div>
+        </div>
+    </div>
+}
+
+
