@@ -7,9 +7,8 @@ namespace DBProject.Models
 {
     public class ActedIn
     {
-        string Actor { get; set; } // matches to actor.actorname
-        string Movie { get; set; } // matches to movie.moviename
-        string Producer { get; set; } // matchest to producer.producername
+        string Actor { get; set; } // matches to actor.ActorID
+        string Movie { get; set; } // matches to movie.MovieID
         int Pay { get; set; } // Actor's pay for the movie
     }
 }

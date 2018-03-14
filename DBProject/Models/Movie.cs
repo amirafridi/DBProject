@@ -7,12 +7,14 @@ namespace DBProject.Models
 {
     public class Movie
     {
-        string Title { get; set; } // Title of the movie. PK
-        string Producer { get; set; } // Name of the producer
-        DateTime ReleaseDate { get; set; } // release date of the movie
-        DateTime RunTime { get; set; } // runtime of the movie
-        int Budget { get; set; } // budget of the movie
-        int Gross { get; set; } // gross income of the movie
+
+        public string Title { get; set; } // Title of the movie
+        public string Producer { get; set; } // Name of the producer
+        public DateTime ReleaseDate { get; set; } // release date of the movie
+        public DateTime RunTime { get; set; } // runtime of the movie
+        public int Budget { get; set; } // budget of the movie
+        public int Gross { get; set; } // gross income of the movie
+
         
     }
 }

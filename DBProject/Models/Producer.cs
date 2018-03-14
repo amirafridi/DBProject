@@ -7,7 +7,10 @@ namespace DBProject.Models
 {
     public class Producer
     {
-        string ProducerName { get; set; } // Producer's Name. PK
+
+        string Name { get; set; }
+        int NetWorth { get; set; }
+
 
     }
 }
