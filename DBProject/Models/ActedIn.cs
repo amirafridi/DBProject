@@ -10,6 +10,5 @@ namespace DBProject.Models
         string Actor { get; set; } // matches to actor.ActorID
         string Movie { get; set; } // matches to movie.MovieID
         int Pay { get; set; } // Actor's pay for the movie
-        bool Star { get; set; } // bool to show if they were the star of the movie
     }
 }
