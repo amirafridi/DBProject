@@ -1,7 +1,41 @@
-﻿
+﻿@model DBProject.Models.Actor
+
 @{
     ViewBag.Title = "AddActor";
 }
 
-<h2>AddActor</h2>
+<h2>Add Actor</h2>
 
+@using (Html.BeginForm("AddActorConfirmation", "Home", FormMethod.Post, new { @onsubmit = "return addActorValidation();" }))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Name)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Gender)
+            </div>
+            <div class="col-sm-8">
+                @Html.RadioButtonFor(m => m.Gender, "M")
+                @Html.Label("Male")
+                @Html.RadioButtonFor(m => m.Gender, "F")
+                @Html.Label("Female")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.BirthDate)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.BirthDate)
+            </div>
+        </div>
+
+    </div>
+}

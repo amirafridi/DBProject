@@ -5,7 +5,7 @@
 
 <h2>Add Movie</h2>
 
-@using (Html.BeginForm("AddMovieConfirmation", "Home", FormMethod.Post, new { @onsubmit="return addMovieValidation();" }))
+@using (Html.BeginForm("AddMovieConfirmation", "Home", FormMethod.Post, new { @onsubmit = "return addMovieValidation();" }))
 {
     <div class="container">
         <div class="row">
@@ -14,6 +14,46 @@
             </div>
             <div class="col-sm-8">
                 @Html.TextBoxFor(m => m.Title)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Producer)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Producer)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.ReleaseDate)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.ReleaseDate)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.RunTime)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.RunTime)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Budget)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Budget)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Gross)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Gross)
             </div>
         </div>
         <div class="row">

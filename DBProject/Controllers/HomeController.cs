@@ -11,6 +11,7 @@ namespace DBProject.Controllers
     public class HomeController : Controller
     {
         public DbServices dbServices = new DbServices();
+        
 
         public ActionResult Index()
         {
@@ -26,7 +27,7 @@ namespace DBProject.Controllers
         [Route("AddMovieConfirmation")]
         public ActionResult AddMovieConfirmation(Movie movie)
         {
-            //dbServices.AddMovie(movie);
+            dbServices.AddMovie(movie);
 
             return View(movie);
         }
@@ -40,6 +41,8 @@ namespace DBProject.Controllers
         [Route("AddActorConfirmation")]
         public ActionResult AddActorConfirmation (Actor actor)
         {
+            dbServices.AddActor(actor);
+
             return View(actor);
         }
 

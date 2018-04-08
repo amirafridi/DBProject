@@ -7,9 +7,9 @@ namespace DBProject.Models
 {
     public class Actor
     {
-        string Name { get; set; }
-        string Gender { get; set; }
-        DateTime BirthDate { get; set; }
+        public string Name { get; set; }
+        public string Gender { get; set; }
+        public DateTime BirthDate { get; set; }
 
     }
 }
