@@ -17,24 +17,9 @@ namespace DBProject.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         [Route("AddMovie")]
         public ActionResult AddMovie ()
         {
-
             return View();
         }
 
@@ -45,5 +30,20 @@ namespace DBProject.Controllers
 
             return View(movie);
         }
+
+        [Route("AddActor")]
+        public ActionResult AddActor ()
+        {
+            return View();
+        }
+
+        [Route("AddActorConfirmation")]
+        public ActionResult AddActorConfirmation (Actor actor)
+        {
+            return View(actor);
+        }
+
+        
+
     }
 }
