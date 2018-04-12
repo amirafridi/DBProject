@@ -4,10 +4,26 @@
 }
 
 <h2>AddMovieConfirmation</h2>
-<p>
-    Title: @Model.Title
-</p>
-<p>
-    option to add actors for movie, etc;
-</p>
-
+<div class="container">
+    <div class="row">
+        <p>Title: @Model.Title</p>
+    </div>
+    <div class="row">
+        <p>Producer: @Model.Producer</p>
+    </div>
+    <div class="row">
+        <p>Release Date: @Model.ReleaseDate.ToString("d")</p>
+    </div>
+    <div class="row">
+        <p>Run Time: @Model.RunTime.ToString("hh:mm:ss")</p>
+    </div>
+    <div class="row">
+        <p>Budget: @Model.Budget</p>
+    </div>
+    <div class="row">
+        <p>Gross: @Model.Gross</p>
+    </div>
+    <div class="row">
+        <p>Rating: @Model.Rating</p>
+    </div>
+</div>

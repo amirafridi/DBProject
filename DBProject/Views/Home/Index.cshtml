@@ -3,11 +3,32 @@
 }
 
 <div class="container">
+    <div class="row" style="padding-top:20px;">
+        <div class="col-sm-4">Amir Afridi</div>
+    </div>
     <div class="row">
-        <div class="col-sm-4">
-            <a href="AddMovie" class="btn">Add Movie</a> 
+        <div class="col-sm-4">Ezequiel Regueira</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">Tyler Howard</div>
+    </div>
+
+    <div style="padding-top:20px;"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>
+                This application is a database that lets the user add Movies, Actors, or Producers.
+            </p>
+            <p>
+                When a movie is added, the DB checks to see if the Producer already exists in the db. If they don't they are added. Otherwise, nothing is changed on the Producer table.
+                On the movie details page, there is an option to add Actors to that movie. This will update the ActedIn table.  If that Actor doesn't exist in the Actors table, the
+                Actor will be added, otherwise nothing is changed on that table.
+            </p>
+            <p>
+                On the Actor details page, there is an option to add movies they have acted in, including the character name, and their pay for that movie.  This also checks if the movie exists.
+                If the movie doesn't exist, the user is taken to a page to add the movie into the DB.  Once that is completed, the transaction is finalized, otherwise the change to the ActedIn table
+                doesn't go through.
+            </p>
         </div>
-        <div class="col-sm-4">ADD STAR</div>
-        <div class="col-sm-4">ADD PRODUCER</div>
     </div>
 </div>

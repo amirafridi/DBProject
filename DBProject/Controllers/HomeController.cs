@@ -16,6 +16,7 @@ namespace DBProject.Controllers
         public ActionResult Index()
         {
             return View();
+
         }
 
         [Route("AddMovie")]

@@ -16,8 +16,13 @@ namespace DBProject.Services
 
         public void AddMovie (Movie movie)
         {
-            string ADD_MOVIE_TO_DB = "INSERT INTO [dbProject4].dbo.MOVIE (MovieTitle, Producer, ReleaseDate, RunTime, Budget, Gross) VALUES ('" + movie.Title + "', '" + 
-                movie.Producer + "', '" + movie.ReleaseDate + "', '" + movie.RunTime + "', '" + movie.Budget + "', '" + movie.Gross + "')";
+            bool flag = false;
+
+            string ADD_MOVIE_TO_DB = "INSERT INTO [dbProject4].dbo.Movie (Title, Producer, ReleaseDate, RunTime, Budget, Gross, Rating) VALUES ('" + movie.Title + "', '" + 
+                movie.Producer + "', '" + movie.ReleaseDate + "', '" + movie.RunTime + "', '" + movie.Budget + "', '" + movie.Gross + "', '" + movie.Rating + "')";
+            string CHECK_IF_PRODUCER_EXISTS = "SELECT Name FROM [dbProject4].dbo.Producer WHERE Name = '" + movie.Producer + "'";
+            string ADD_PRODUCER_TO_DB = "INSERT INTO [dbProject4].dbo.Producer (Name) VALUES ('" + movie.Producer + "')";
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(ADD_MOVIE_TO_DB))
@@ -27,17 +32,47 @@ namespace DBProject.Services
                     cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
                 }
+
+                using (SqlCommand cmd = new SqlCommand(CHECK_IF_PRODUCER_EXISTS))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        flag = true;
+                    }
+                    cmd.Connection.Close();
+                }
+
+                if (!flag)
+                {
+                    using (SqlCommand cmd = new SqlCommand(ADD_PRODUCER_TO_DB))
+                    {
+                        cmd.Connection = conn;
+                        cmd.Connection.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+                    }
+                }
+
             }            
         }
 
         public void AddActor (Actor actor)
         {
-            string ADD_ACTOR_TO_DB = "INSERT INTO Actors (Name, Gender, BirthDate) VALUES ('" + actor.Name + "', '" + actor.Gender + "', '" + actor.BirthDate + "')";
-            using (SqlCommand cmd = new SqlCommand())
+            string ADD_ACTOR_TO_DB = "INSERT INTO [dbProject4].dbo.Actors (Name) VALUES ('" + actor.Name + "')";
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                cmd.CommandText = ADD_ACTOR_TO_DB;
-                cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(ADD_ACTOR_TO_DB))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+                }
             }
+            
         }
     }
 }

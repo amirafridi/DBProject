@@ -14,6 +14,7 @@ namespace DBProject.Models
         public DateTime RunTime { get; set; } // runtime of the movie
         public int Budget { get; set; } // budget of the movie
         public int Gross { get; set; } // gross income of the movie
+        public int Rating { get; set; } // rating between 1-10
 
         
     }
