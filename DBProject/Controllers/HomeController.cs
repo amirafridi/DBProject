@@ -46,6 +46,27 @@ namespace DBProject.Controllers
 
             return View(actor);
         }
+        
+        [Route("AddProducer")]
+        public ActionResult AddProducer ()
+        {
+            return View();
+        }
+
+        [Route("AddProducerConfirmation")]
+        public ActionResult AddProducerConfirmation (Producer producer)
+        {
+            dbServices.AddProducer(producer);
+
+            return View(producer);
+        }
+        [Route("MovieDetails")]
+        public ActionResult MovieDetails(string movie)
+        {
+            Movie model = dbServices.FetchMovieDetails(movie);
+            return View(model);
+        }
+        
 
         
 
