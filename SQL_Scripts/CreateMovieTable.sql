@@ -11,8 +11,8 @@ GO
 CREATE TABLE [dbo].[Movie](
 	[Title] [varchar](50) NOT NULL,
 	[Producer] [varchar](50) NOT NULL,
-	[ReleaseDate] [date] NOT NULL,
-	[RunTime] [time](7) NOT NULL,
+	[ReleaseDate] [int] NOT NULL,
+	[RunTime] [int] NOT NULL,
 	[Budget] [int] NOT NULL,
 	[Gross] [int] NOT NULL,
 	[Rating] [int] NOT NULL,

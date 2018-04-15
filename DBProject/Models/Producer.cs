@@ -7,7 +7,7 @@ namespace DBProject.Models
 {
     public class Producer
     {
-        string Name { get; set; }
+        public string Name { get; set; }
  
     }
 }

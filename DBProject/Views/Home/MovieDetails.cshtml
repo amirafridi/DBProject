@@ -1,10 +1,13 @@
 ﻿@model DBProject.Models.Movie
 @{
-    ViewBag.Title = "AddMovieConfirmation";
+    ViewBag.Title = "MovieDetails";
 }
 
-<h2>AddMovieConfirmation</h2>
+
 <div class="container">
+    <div class="row">
+        <h2>@Model.Title</h2>
+    </div>
     <div class="row">
         <p>Title: @Model.Title</p>
     </div>
@@ -12,7 +15,7 @@
         <p>Producer: @Model.Producer</p>
     </div>
     <div class="row">
-        <p>Release Year: @Model.ReleaseYear</p>
+        <p>Release Date: @Model.ReleaseYear</p>
     </div>
     <div class="row">
         <p>Run Time (in minutes): @Model.RunTime</p>
@@ -27,3 +30,5 @@
         <p>Rating: @Model.Rating</p>
     </div>
 </div>
+
+
