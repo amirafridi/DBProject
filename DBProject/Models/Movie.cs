@@ -15,6 +15,7 @@ namespace DBProject.Models
         public int Budget { get; set; } // budget of the movie
         public int Gross { get; set; } // gross income of the movie
         public int Rating { get; set; } // rating between 1-10
+        public List<ActedIn> Actors { get; set; }
 
         
     }

@@ -64,9 +64,25 @@ namespace DBProject.Controllers
         public ActionResult MovieDetails(string movie)
         {
             Movie model = dbServices.FetchMovieDetails(movie);
+            model.Actors = dbServices.FetchActorsForMovie(movie);
             return View(model);
         }
-        
+        [Route("ActorDetails")]
+        public ActionResult ActorDetails(string actor)
+        {
+            Actor model = new Actor
+            {
+                Name = actor
+            };
+            model.Movies = dbServices.FetchMoviesForActor(actor);
+            return View(model);
+        }
+        [Route("Movies")]
+        public ActionResult Movies ()
+        {
+            List<Movie> movies = dbServices.FetchAllMovies();
+            return View(movies);
+        }
 
         
 

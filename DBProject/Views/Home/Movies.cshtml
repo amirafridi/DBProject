@@ -1,0 +1,44 @@
+﻿@model List<DBProject.Models.Movie>
+@{
+    ViewBag.Title = "Movies";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Movies</h2>
+        </div>
+    </div>
+    <div class="row header-row">
+        <div class="col-md-3 col-md-offset-1">
+            <h3>Title</h3>
+        </div>
+        <div class="col-md-3">
+            <h3>Producer</h3>
+        </div>
+        <div class="col-md-2">
+            <h3>Release Year</h3>
+        </div>
+        <div class="col-md-2">
+            <h3>Rating</h3>
+        </div>
+    </div>
+
+    @foreach (var mov in Model)
+    {
+        <div class="col-md-3 col-md-offset-1">
+            <a href="/Home/MovieDetails?movie=@mov.Title">@mov.Title</a>
+        </div>
+        <div class="col-md-3">
+            <p>@mov.Producer</p>
+        </div>
+        <div class="col-md-2">
+            <p>@mov.ReleaseYear</p>
+        </div>
+        <div class="col-md-2">
+            <p>@mov.Rating</p>
+        </div>
+    }
+</div>
+
+

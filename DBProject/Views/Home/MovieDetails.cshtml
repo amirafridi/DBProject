@@ -29,6 +29,43 @@
     <div class="row">
         <p>Rating: @Model.Rating</p>
     </div>
+    <div class="row">
+        <a href="/Home/AddActorToMovie?movie=@Model.Title">Add Actor to @Model.Title</a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Actors in @Model.Title:</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Actor</h4>
+            </div>
+            <div class="col-md-4">
+                <h4>Character Name</h4>
+            </div>
+            <div class="col-md-4">
+                <h4>Pay</h4>
+            </div>
+        </div>
+        @foreach (var actor in Model.Actors)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="/Home/ActorDetails?actor=@actor.Actor">@actor.Actor</a>
+                </div>
+                <div class="col-md-4">
+                    <p>@actor.CharName</p>
+                </div>
+                <div class="col-md-4">
+                    <p>$@actor.Pay</p>
+                </div>
+            </div>
+        }
+    </div>
+
 </div>
 
 

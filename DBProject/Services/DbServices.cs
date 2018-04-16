@@ -10,8 +10,9 @@ namespace DBProject.Services
 {
     public class DbServices
     {
-        public const string connectionString = "Server=DESKTOP-IHEUFHU\\MYSERVER;Database=dbProject4;Trusted_Connection=True;";
-        
+        public const string connectionString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+
+
 
 
         public void AddMovie (Movie movie)
@@ -114,7 +115,98 @@ namespace DBProject.Services
                 }
             }
             return movie;
-
         }
+
+        public List<ActedIn> FetchActorsForMovie (string movieTitle)
+        {
+            List<ActedIn> actors = new List<ActedIn>();
+            string GET_ACTORS_FOR_MOVIE = "SELECT Actor, CharName, Pay FROM [dbProject4].dbo.ActedIn WHERE Movie = '" + movieTitle +"' ORDER BY Pay DESC";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(GET_ACTORS_FOR_MOVIE))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while(reader.Read())
+                    {
+                        ActedIn actedIn = new ActedIn
+                        {
+                            Actor = (string)reader["Actor"],
+                            CharName = (string)reader["CharName"],
+                            Pay = (int)reader["Pay"]
+                        };
+                        actors.Add(actedIn);
+                    }
+                    cmd.Connection.Close();
+                }
+            }
+
+            return actors;
+        }
+
+        public List<Movie> FetchAllMovies ()
+        {
+            string GET_ALL_MOVIES = "SELECT Title, Producer, ReleaseDate, Rating FROM [dbProject4].dbo.Movie";
+            List<Movie> movies = new List<Movie>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(GET_ALL_MOVIES))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Movie movie = new Movie
+                        {
+                            Title = (string)reader["Title"],
+                            Producer = (string)reader["Producer"],
+                            ReleaseYear = (int)reader["ReleaseDate"],
+                            Rating = (int)reader["Rating"]
+                        };
+                        movies.Add(movie);
+                    }
+
+                    cmd.Connection.Close();
+                }
+            }
+
+            return movies;
+        }
+
+        public List<ActedIn> FetchMoviesForActor (string actorName)
+        {
+            string GET_MOVIES_FOR_ACTOR = "SELECT Movie, CharName, Pay FROM [dbProject4].dbo.ActedIn WHERE Actor = '" + actorName + "'";
+            List<ActedIn> movies = new List<ActedIn>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(GET_MOVIES_FOR_ACTOR))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        ActedIn movie = new ActedIn
+                        {
+                            Movie = (string)reader["Movie"],
+                            CharName = (string)reader["CharName"],
+                            Pay = (int)reader["Pay"]
+                        };
+                        movies.Add(movie);
+                    }
+                    cmd.Connection.Close();
+                }
+            }
+
+            return movies;
+        }
+
     }
 }
