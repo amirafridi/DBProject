@@ -28,9 +28,19 @@ namespace DBProject.Controllers
         [Route("AddMovieConfirmation")]
         public ActionResult AddMovieConfirmation(Movie movie)
         {
-            dbServices.AddMovie(movie);
-
-            return View(movie);
+            bool flag = dbServices.AddMovie(movie);
+            if (flag)
+            {
+                return View(movie);
+            } else
+            {
+                Producer producer = new Producer
+                {
+                    Name = movie.Producer
+                };
+                return View("AddProducer", producer);
+            }
+            
         }
 
         [Route("AddActor")]

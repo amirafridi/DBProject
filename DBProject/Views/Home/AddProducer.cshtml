@@ -1,9 +1,9 @@
 ﻿@model DBProject.Models.Producer
 
 @{
-    ViewBag.Title = "AddActor";
+    ViewBag.Title = "AddProducer";
 }
-<h2>Add Actor</h2>
+<h2>Add Producer</h2>
 @using (Html.BeginForm("AddProducerConfirmation", "Home", FormMethod.Post, new { @onsubmit = "return addProducerValidation();" }))
 {
     <div class="container">
@@ -16,8 +16,27 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Gender)
+            </div>
+            <div class="col-sm-8">
+                @Html.RadioButtonFor(m => m.Gender, "Male")
+                @Html.Label("Male")
+                @Html.RadioButtonFor(m => m.Gender, "Female")
+                @Html.Label("Female")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Rating)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Rating)
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12">
-                <input type="submit" value="ADD ACTOR" />
+                <input type="submit" value="ADD PRODUCER" />
             </div>
         </div>
     </div>

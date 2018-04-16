@@ -15,7 +15,7 @@ namespace DBProject.Services
 
 
 
-        public void AddMovie (Movie movie)
+        public bool AddMovie (Movie movie)
         {
             bool flag = false;
 
@@ -46,23 +46,14 @@ namespace DBProject.Services
                     cmd.Connection.Close();
                 }
 
-                if (!flag)
-                {
-                    using (SqlCommand cmd = new SqlCommand(ADD_PRODUCER_TO_DB))
-                    {
-                        cmd.Connection = conn;
-                        cmd.Connection.Open();
-                        cmd.ExecuteNonQuery();
-                        cmd.Connection.Close();
-                    }
-                }
+                return flag; // false if producer doesn't exist
 
             }            
         }
 
         public void AddActor (Actor actor)
         {
-            string ADD_ACTOR_TO_DB = "INSERT INTO [dbProject4].dbo.Actor (Name) VALUES ('" + actor.Name + "')";
+            string ADD_ACTOR_TO_DB = "INSERT INTO [dbProject4].dbo.Actor (Name, Gender, Rating) VALUES ('" + actor.Name + "', '" + actor.Gender + "', '" + actor.Rating + "')";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(ADD_ACTOR_TO_DB))
@@ -77,7 +68,7 @@ namespace DBProject.Services
         }
         public void AddProducer(Producer producer)
         {
-            string ADD_PRODUCER_TO_DB = "INSERT INTO [dbProject4].dbo.Producer (Name) VALUES ('" + producer.Name + "')";
+            string ADD_PRODUCER_TO_DB = "INSERT INTO [dbProject4].dbo.Producer (Name, Gender, Rating) VALUES ('" + producer.Name + "', '" + producer.Gender + "', '" + producer.Rating + "')";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(ADD_PRODUCER_TO_DB))
