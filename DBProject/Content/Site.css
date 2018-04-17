@@ -22,3 +22,30 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.table-container {
+    border: 1px solid #DDDDDD;
+}
+
+.header-row {
+    border-bottom: 1px solid #000000;
+    background: #DDDDDD;
+}
+
+a.movie-title {
+    font-size: larger;
+}
+
+h3 {
+    font-size: larger;
+}
+
+.movie-row,
+.actor-row{
+    border-bottom: 1px solid black;
+}
+
+.even {
+    background-color: #EEEEEE;
+}

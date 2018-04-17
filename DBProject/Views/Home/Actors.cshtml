@@ -1,7 +1,40 @@
-﻿
+﻿@model List<DBProject.Models.Actor>
 @{
     ViewBag.Title = "Actors";
 }
 
-<h2>Actors</h2>
 
+<h2>Actors</h2>
+<div class="table-container container">
+
+    <div class="row header-row">
+        <div class="col-md-4 col-md-offset-2">
+            <a href="/Home/Actors?sortby=Name"><h3>Name</h3></a>
+        </div>
+        <div class="col-md-2">
+            <a href="/Home/Actors?sortby=Gender"><h3>Gender</h3></a>
+        </div>
+        <div class="col-md-2">
+            <a href="/Home/Actors?sortby=Rating"><h3>Rating</h3></a>
+        </div>
+    </div>
+    @{string rowNumber = "odd";}
+    @foreach (var actor in Model)
+    {
+        <div class="row actor-row @rowNumber">
+            <div class="col-md-4 col-md-offset-2">
+                <a href="/Home/ActorDetails?actor=@actor.Name">@actor.Name</a>
+            </div>
+            <div class="col-md-2">
+                <p>@actor.Gender</p>
+            </div>
+            <div class="col-md-2">
+                <p>@actor.Rating</p>
+            </div>
+        </div>
+        {
+            rowNumber = rowNumber == "odd" ? "even" : "odd";
+
+        }
+    }
+</div>

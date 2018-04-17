@@ -1,7 +1,49 @@
-﻿@model DBProject.Models.Actor
+﻿@model DBProject.Models.ActedIn
 @{
     ViewBag.Title = "AddActorToMovie";
 }
 
-<h2>AddActorToMovie</h2>
+<h2>Add Actor to @Model.Movie</h2>
 
+@using (Html.BeginForm("AddActorToMovieConfirmation", "Home", FormMethod.Post, new { @onsubmit = "return addActorToMovieValidation();" }))
+{
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.LabelFor(m => m.Movie)
+        </div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Movie, new { @readonly="" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.LabelFor(m => m.Actor)
+        </div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Actor)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.LabelFor(m => m.CharName)
+        </div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.CharName)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.LabelFor(m => m.Pay)
+        </div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Pay)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="submit" value="ADD ACTOR" />
+        </div>
+    </div>
+</div>
+}

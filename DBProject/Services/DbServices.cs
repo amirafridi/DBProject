@@ -79,7 +79,38 @@ namespace DBProject.Services
                     cmd.Connection.Close();
                 }
             }
+        }
 
+        public bool AddActorToMovie(ActedIn actedIn)
+        {
+            bool flag = false;
+            string INSERT_INTO_ACTEDIN = "INSERT INTO [dbProject4].dbo.ActedIn (Movie, Actor, CharName, Pay) VALUES ('" + actedIn.Movie + "', '" +
+                actedIn.Actor + "', '" + actedIn.CharName + "', '" + actedIn.Pay + "')";
+            string CHECK_IF_ACTOR_EXISTS = "SELECT * FROM [dbProject4].dbo.Actor WHERE Name = '" + actedIn.Actor + "'";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(INSERT_INTO_ACTEDIN))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+                }
+
+                using (SqlCommand cmd = new SqlCommand(CHECK_IF_ACTOR_EXISTS))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        flag = true;
+                    }
+                    cmd.Connection.Close();
+                }
+            }
+
+            return flag;
         }
 
         public Movie FetchMovieDetails(string movieTitle)
@@ -137,9 +168,9 @@ namespace DBProject.Services
             return actors;
         }
 
-        public List<Movie> FetchAllMovies ()
+        public List<Movie> FetchAllMovies (string SortBy = "ReleaseDate")
         {
-            string GET_ALL_MOVIES = "SELECT Title, Producer, ReleaseDate, Rating FROM [dbProject4].dbo.Movie";
+            string GET_ALL_MOVIES = "SELECT Title, Producer, ReleaseDate, Rating FROM [dbProject4].dbo.Movie ORDER BY " + SortBy;
             List<Movie> movies = new List<Movie>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -167,6 +198,37 @@ namespace DBProject.Services
             }
 
             return movies;
+        }
+
+        public List<Actor> FetchAllActors(string SortBy = "Name")
+        {
+            string GET_ALL_ACTORS = "SELECT Name, Gender, Rating FROM [dbProject4].dbo.Actor ORDER BY " + SortBy;
+            List<Actor> actors = new List<Actor>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(GET_ALL_ACTORS))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Actor actor = new Actor
+                        {
+                            Name = (string)reader["Name"],
+                            Gender = (string)reader["Gender"],
+                            Rating = (int)reader["Rating"]
+                        };
+                        actors.Add(actor);
+                    }
+
+                    cmd.Connection.Close();
+                }
+            }
+
+            return actors;
         }
 
         public List<ActedIn> FetchMoviesForActor (string actorName)
@@ -198,6 +260,34 @@ namespace DBProject.Services
 
             return movies;
         }
+
+        public Actor FetchActorDetails (string actorName)
+        {
+            string GET_ACTOR_DETAILS = "SELECT Gender, Rating FROM [dbProject4].dbo.Actor WHERE Name = '" + actorName + "'";
+
+            Actor actor = new Actor
+            {
+                Name = actorName
+            };
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(GET_ACTOR_DETAILS))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    reader.Read();
+                    actor.Gender = (string)reader["Gender"];
+                    actor.Rating = (int)reader["Rating"];
+                    cmd.Connection.Close();
+                }
+            }
+
+            return actor;
+        }
+
+
 
     }
 }

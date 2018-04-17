@@ -199,6 +199,7 @@
     <Content Include="Views\Home\AddActorToMovie.cshtml" />
     <Content Include="Views\Home\ActorDetails.cshtml" />
     <Content Include="Views\Home\Actors.cshtml" />
+    <Content Include="Views\Home\AddActorToMovieConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -80,21 +80,53 @@ namespace DBProject.Controllers
         [Route("ActorDetails")]
         public ActionResult ActorDetails(string actor)
         {
-            Actor model = new Actor
-            {
-                Name = actor
-            };
+            Actor model = dbServices.FetchActorDetails(actor);
             model.Movies = dbServices.FetchMoviesForActor(actor);
             return View(model);
         }
         [Route("Movies")]
-        public ActionResult Movies ()
+        public ActionResult Movies (string sortby= "ReleaseDate")
         {
-            List<Movie> movies = dbServices.FetchAllMovies();
+            List<Movie> movies = dbServices.FetchAllMovies(sortby);
             return View(movies);
         }
+        [Route("Actors")]
+        public ActionResult Actors (string sortby="Name")
+        {
+            List<Actor> actors = dbServices.FetchAllActors(sortby);
+            return View(actors);
+        }
 
-        
+        [Route("AddActorToMovie")]
+        public ActionResult AddActorToMovie(string movie)
+        {
+            ActedIn actedIn = new ActedIn
+            {
+                Movie = movie
+            };
+            return View(actedIn);
+        }
+
+        [Route("AddActorToMovieConfirmation")]
+        public ActionResult AddActorToMovieConfirmation(ActedIn actedIn)
+        {
+            bool flag = dbServices.AddActorToMovie(actedIn);
+            if(!flag)
+            {
+                Actor actor = new Actor
+                {
+                    Name = actedIn.Actor
+                };
+                return View("AddActor", actor);
+            }
+            else
+            {
+                return View(actedIn);
+            }
+        }
+
+
+
 
     }
 }

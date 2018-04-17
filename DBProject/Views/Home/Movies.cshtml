@@ -3,41 +3,48 @@
     ViewBag.Title = "Movies";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Movies</h2>
-        </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Movies</h2>
     </div>
+</div>
+<div class="table-container container">
     <div class="row header-row">
         <div class="col-md-3 col-md-offset-1">
-            <h3>Title</h3>
+            <a href="/Home/Movies?sortby=Title"><h3>Title</h3></a>
         </div>
         <div class="col-md-3">
-            <h3>Producer</h3>
+            <a href="/Home/Movies?sortby=Producer"><h3>Producer</h3></a>
         </div>
         <div class="col-md-2">
-            <h3>Release Year</h3>
+            <a href="/Home/Movies?sortby=ReleaseDate"><h3>Release Year</h3></a>
         </div>
         <div class="col-md-2">
-            <h3>Rating</h3>
+            <a href="/Home/Movies?sortby=Rating"><h3>Rating</h3></a>
         </div>
     </div>
-
+    @{string rowNumber = "odd";}
     @foreach (var mov in Model)
     {
-        <div class="col-md-3 col-md-offset-1">
-            <a href="/Home/MovieDetails?movie=@mov.Title">@mov.Title</a>
+        <div class="row movie-row @rowNumber">
+            <div class="col-md-3 col-md-offset-1">
+                <a href="/Home/MovieDetails?movie=@mov.Title" class="movie-title">@mov.Title</a>
+            </div>
+            <div class="col-md-3">
+                <p>@mov.Producer</p>
+            </div>
+            <div class="col-md-2">
+                <p>@mov.ReleaseYear</p>
+            </div>
+            <div class="col-md-2">
+                <p>@mov.Rating</p>
+            </div>
         </div>
-        <div class="col-md-3">
-            <p>@mov.Producer</p>
-        </div>
-        <div class="col-md-2">
-            <p>@mov.ReleaseYear</p>
-        </div>
-        <div class="col-md-2">
-            <p>@mov.Rating</p>
-        </div>
+        { 
+            rowNumber = rowNumber == "odd" ? "even" : "odd";
+            
+        }
     }
 </div>
 
