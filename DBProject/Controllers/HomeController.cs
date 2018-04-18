@@ -125,6 +125,34 @@ namespace DBProject.Controllers
             }
         }
 
+        [Route("AddMovieToActor")]
+        public ActionResult AddMovieToActor(string actor)
+        {
+            ActedIn actedIn = new ActedIn
+            {
+                Actor = actor
+            };
+            return View(actedIn);
+        }
+
+        [Route("AddMovieToActorConfirmation")]
+        public ActionResult AddMovieToActorConfirmation(ActedIn actedIn)
+        {
+            bool flag = dbServices.AddMovieToActor(actedIn);
+            if (!flag)
+            {
+                Movie movie = new Movie
+                {
+                    Title = actedIn.Movie
+                };
+                return View("AddMovie", movie);
+            }
+            else
+            {
+                return View(actedIn);
+            }
+        }
+
 
 
 

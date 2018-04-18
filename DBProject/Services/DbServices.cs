@@ -113,6 +113,38 @@ namespace DBProject.Services
             return flag;
         }
 
+        public bool AddMovieToActor(ActedIn actedIn)
+        {
+            bool flag = false;
+            string INSERT_INTO_ACTEDIN = "INSERT INTO [dbProject4].dbo.ActedIn (Movie, Actor, CharName, Pay) VALUES ('" + actedIn.Movie + "', '" +
+                actedIn.Actor + "', '" + actedIn.CharName + "', '" + actedIn.Pay + "')";
+            string CHECK_IF_MOVIE_EXISTS = "SELECT * FROM [dbProject4].dbo.Movie WHERE Title = '" + actedIn.Movie + "'";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(INSERT_INTO_ACTEDIN))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+                }
+
+                using (SqlCommand cmd = new SqlCommand(CHECK_IF_MOVIE_EXISTS))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        flag = true;
+                    }
+                    cmd.Connection.Close();
+                }
+            }
+
+            return flag;
+        }
+
         public Movie FetchMovieDetails(string movieTitle)
         {
             string GET_MOVIE_DETAILS = "SELECT * FROM [dbProject4].dbo.Movie WHERE Title = '" + movieTitle + "'";
