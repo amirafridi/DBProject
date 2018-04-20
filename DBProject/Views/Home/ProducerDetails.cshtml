@@ -1,0 +1,62 @@
+﻿@model DBProject.Models.Producer
+@{
+    ViewBag.Title = "Producer Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h2>@Model.Name</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <p>Gender: @Model.Gender</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <p>Actor Rating: @Model.Rating</p>
+        </div>
+    </div>
+    <div class="row">
+        <a href="/Home/AddMovieToProducer?producer=@Model.Name">Add Movie that @Model.Name produced</a>
+    </div>
+    <div class="container">
+        <div class="row header-row">
+            <div class="col-md-3 col-md-offset-1">
+                <h3>Title</h3>
+            </div>
+            <div class="col-md-3">
+                <h3>Release Year</h3>
+            </div>
+            <div class="col-md-2">
+                <h3>Rating</h3>
+            </div>
+            <div class="col-md-2">
+                <h3>Gross</h3>
+            </div>
+        </div>
+        @foreach (var mov in Model.Movies)
+        {
+        <div class="row ">
+            <div class="col-md-3 col-md-offset-1">
+                <a href="/Home/MovieDetails?movie=@mov.Title">@mov.Title</a>
+            </div>
+            <div class="col-md-3">
+                <p>@mov.ReleaseYear</p>
+            </div>
+            <div class="col-md-2">
+                <p>@mov.Rating</p>
+            </div>
+            <div class="col-md-2">
+                <p>$@mov.Gross</p>
+            </div>
+        </div>
+        }
+    </div>
+
+
+</div>
+
+

@@ -166,6 +166,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -201,6 +202,9 @@
     <Content Include="Views\Home\Actors.cshtml" />
     <Content Include="Views\Home\AddActorToMovieConfirmation.cshtml" />
     <Content Include="Views\Home\AddMovieToActor.cshtml" />
+    <Content Include="Views\Home\AddMovieToActorConfirmation.cshtml" />
+    <Content Include="Views\Home\Producers.cshtml" />
+    <Content Include="Views\Home\ProducerDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -84,6 +84,13 @@ namespace DBProject.Controllers
             model.Movies = dbServices.FetchMoviesForActor(actor);
             return View(model);
         }
+        [Route("ProducerDetails")]
+        public ActionResult ProducerDetails(string producer)
+        {
+            Producer model = dbServices.FetchProducerDetails(producer);
+            model.Movies = dbServices.FetchMoviesForProducer(producer);
+            return View(model);
+        }
         [Route("Movies")]
         public ActionResult Movies (string sortby= "ReleaseDate")
         {
@@ -95,6 +102,13 @@ namespace DBProject.Controllers
         {
             List<Actor> actors = dbServices.FetchAllActors(sortby);
             return View(actors);
+        }
+
+        [Route("Producers")]
+        public ActionResult Producers (string sortby="Name")
+        {
+            List<Producer> producers = dbServices.FetchAllProducers(sortby);
+            return View(producers);
         }
 
         [Route("AddActorToMovie")]
@@ -151,6 +165,17 @@ namespace DBProject.Controllers
             {
                 return View(actedIn);
             }
+        }
+
+        [Route("AddMovieToProducer")]
+        public ActionResult AddMovieToProducer (string producer)
+        {
+            Movie movie = new Movie
+            {
+                Producer = producer
+            };
+
+            return View("AddMovie", movie);
         }
 
 

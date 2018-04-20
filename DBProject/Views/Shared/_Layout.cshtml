@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
@@ -20,12 +20,10 @@
                 @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Add Movie", "AddMovie", "Home")</li>
-                    <li>@Html.ActionLink("Add Actor", "AddActor", "Home")</li>
-                    <li>@Html.ActionLink("Add Producer", "AddProducer", "Home")</li>
+                <ul class="nav navbar-nav">                  
                     <li>@Html.ActionLink("List Of Movies", "Movies", "Home")</li>
                     <li>@Html.ActionLink("List Of Actors", "Actors", "Home")</li>
+                    <li>@Html.ActionLink("List Of Producers", "Producers", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -37,5 +35,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/JavaScript.js"></script>
 </body>
 </html>

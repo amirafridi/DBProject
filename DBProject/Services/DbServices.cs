@@ -263,7 +263,88 @@ namespace DBProject.Services
             return actors;
         }
 
-        public List<ActedIn> FetchMoviesForActor (string actorName)
+        public List<Producer> FetchAllProducers(string SortBy = "Name")
+        {
+            string GET_ALL_PRODUCERS = "SELECT Name, Gender, Rating FROM [dbProject4].dbo.Producer ORDER BY " + SortBy;
+            List<Producer> producers = new List<Producer>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(GET_ALL_PRODUCERS))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Producer producer = new Producer
+                        {
+                            Name = (string)reader["Name"],
+                            Gender = (string)reader["Gender"],
+                            Rating = (int)reader["Rating"]
+                        };
+                        producers.Add(producer);
+                    }
+
+                    cmd.Connection.Close();
+                }
+            }
+
+            return producers;
+        }
+
+        public Actor FetchActorDetails (string actorName)
+        {
+            string GET_ACTOR_DETAILS = "SELECT Gender, Rating FROM [dbProject4].dbo.Actor WHERE Name = '" + actorName + "'";
+
+            Actor actor = new Actor
+            {
+                Name = actorName
+            };
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(GET_ACTOR_DETAILS))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    reader.Read();
+                    actor.Gender = (string)reader["Gender"];
+                    actor.Rating = (int)reader["Rating"];
+                    cmd.Connection.Close();
+                }
+            }
+
+            return actor;
+        }
+
+        public Producer FetchProducerDetails (string producerName)
+        {
+            string GET_PRODUCER_DETAILS = "SELECT Gender, Rating FROM [dbProject4].dbo.Producer WHERE Name = '" + producerName + "'";
+
+            Producer producer = new Producer
+            {
+                Name = producerName
+            };
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(GET_PRODUCER_DETAILS))
+                {
+                    cmd.Connection = conn;
+                    cmd.Connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    reader.Read();
+                    producer.Gender = (string)reader["Gender"];
+                    producer.Rating = (int)reader["Rating"];
+                    cmd.Connection.Close();
+                }
+            }
+            return producer;
+        }
+
+        public List<ActedIn> FetchMoviesForActor(string actorName)
         {
             string GET_MOVIES_FOR_ACTOR = "SELECT Movie, CharName, Pay FROM [dbProject4].dbo.ActedIn WHERE Actor = '" + actorName + "'";
             List<ActedIn> movies = new List<ActedIn>();
@@ -293,30 +374,36 @@ namespace DBProject.Services
             return movies;
         }
 
-        public Actor FetchActorDetails (string actorName)
+        public List<Movie> FetchMoviesForProducer(string producerName)
         {
-            string GET_ACTOR_DETAILS = "SELECT Gender, Rating FROM [dbProject4].dbo.Actor WHERE Name = '" + actorName + "'";
-
-            Actor actor = new Actor
-            {
-                Name = actorName
-            };
+            string GET_MOVIES_FOR_PRODUCER = "SELECT Title, ReleaseDate, Rating, Gross FROM [dbProject4].dbo.Movie WHERE " +
+                "Producer = '" + producerName + "' ORDER BY ReleaseDate DESC";
+            List<Movie> movies = new List<Movie>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(GET_ACTOR_DETAILS))
+                using (SqlCommand cmd = new SqlCommand(GET_MOVIES_FOR_PRODUCER))
                 {
                     cmd.Connection = conn;
                     cmd.Connection.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    reader.Read();
-                    actor.Gender = (string)reader["Gender"];
-                    actor.Rating = (int)reader["Rating"];
+
+                    while (reader.Read())
+                    {
+                        Movie movie = new Movie
+                        {
+                            Title = (string)reader["Title"],
+                            ReleaseYear = (int)reader["ReleaseDate"],
+                            Rating = (int)reader["Rating"],
+                            Gross = (int)reader["Gross"]
+                        };
+                        movies.Add(movie);
+                    }
                     cmd.Connection.Close();
                 }
             }
 
-            return actor;
+            return movies;
         }
 
 

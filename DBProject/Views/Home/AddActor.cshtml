@@ -6,7 +6,7 @@
 
 <h2>Add Actor</h2>
 
-@using (Html.BeginForm("AddActorConfirmation", "Home", FormMethod.Post, new { @onsubmit = "return addActorValidation();" }))
+@using (Html.BeginForm("AddActorConfirmation", "Home", FormMethod.Post, new { @onsubmit = "return addPersonValidation();" }))
 {
 <div class="container">
     <div class="row">
@@ -14,7 +14,7 @@
             @Html.LabelFor(m => m.Name)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @id = "nameField" })
         </div>
     </div>
     <div class="row">
@@ -22,9 +22,9 @@
             @Html.LabelFor(m => m.Gender)
         </div>
         <div class="col-sm-8">
-            @Html.RadioButtonFor(m => m.Gender, "Male")
+            @Html.RadioButtonFor(m => m.Gender, "Male", new { @id = "m" })
             @Html.Label("Male")
-            @Html.RadioButtonFor(m => m.Gender, "Female")
+            @Html.RadioButtonFor(m => m.Gender, "Female", new { @id = "f" })
             @Html.Label("Female")
         </div>
     </div>
@@ -33,7 +33,7 @@
             @Html.LabelFor(m => m.Rating)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Rating)
+            @Html.TextBoxFor(m => m.Rating, new { @id = "ratingField" })
         </div>
     </div>
     <div class="row">
