@@ -11,7 +11,7 @@ namespace DBProject.Controllers
     public class HomeController : Controller
     {
         public DbServices dbServices = new DbServices();
-        
+
 
         public ActionResult Index()
         {
@@ -20,7 +20,7 @@ namespace DBProject.Controllers
         }
 
         [Route("AddMovie")]
-        public ActionResult AddMovie ()
+        public ActionResult AddMovie()
         {
             return View();
         }
@@ -32,7 +32,8 @@ namespace DBProject.Controllers
             if (flag)
             {
                 return View(movie);
-            } else
+            }
+            else
             {
                 Producer producer = new Producer
                 {
@@ -40,31 +41,31 @@ namespace DBProject.Controllers
                 };
                 return View("AddProducer", producer);
             }
-            
+
         }
 
         [Route("AddActor")]
-        public ActionResult AddActor ()
+        public ActionResult AddActor()
         {
             return View();
         }
 
         [Route("AddActorConfirmation")]
-        public ActionResult AddActorConfirmation (Actor actor)
+        public ActionResult AddActorConfirmation(Actor actor)
         {
             dbServices.AddActor(actor);
 
             return View(actor);
         }
-        
+
         [Route("AddProducer")]
-        public ActionResult AddProducer ()
+        public ActionResult AddProducer()
         {
             return View();
         }
 
         [Route("AddProducerConfirmation")]
-        public ActionResult AddProducerConfirmation (Producer producer)
+        public ActionResult AddProducerConfirmation(Producer producer)
         {
             dbServices.AddProducer(producer);
 
@@ -92,20 +93,20 @@ namespace DBProject.Controllers
             return View(model);
         }
         [Route("Movies")]
-        public ActionResult Movies (string sortby= "ReleaseDate")
+        public ActionResult Movies(string sortby = "ReleaseDate")
         {
             List<Movie> movies = dbServices.FetchAllMovies(sortby);
             return View(movies);
         }
         [Route("Actors")]
-        public ActionResult Actors (string sortby="Name")
+        public ActionResult Actors(string sortby = "Name")
         {
             List<Actor> actors = dbServices.FetchAllActors(sortby);
             return View(actors);
         }
 
         [Route("Producers")]
-        public ActionResult Producers (string sortby="Name")
+        public ActionResult Producers(string sortby = "Name")
         {
             List<Producer> producers = dbServices.FetchAllProducers(sortby);
             return View(producers);
@@ -125,7 +126,7 @@ namespace DBProject.Controllers
         public ActionResult AddActorToMovieConfirmation(ActedIn actedIn)
         {
             bool flag = dbServices.AddActorToMovie(actedIn);
-            if(!flag)
+            if (!flag)
             {
                 Actor actor = new Actor
                 {
@@ -168,7 +169,7 @@ namespace DBProject.Controllers
         }
 
         [Route("AddMovieToProducer")]
-        public ActionResult AddMovieToProducer (string producer)
+        public ActionResult AddMovieToProducer(string producer)
         {
             Movie movie = new Movie
             {
@@ -177,9 +178,6 @@ namespace DBProject.Controllers
 
             return View("AddMovie", movie);
         }
-
-
-
 
     }
 }

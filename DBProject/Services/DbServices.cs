@@ -12,14 +12,11 @@ namespace DBProject.Services
     {
         public const string connectionString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
 
-
-
-
-        public bool AddMovie (Movie movie)
+        public bool AddMovie(Movie movie)
         {
             bool flag = false;
 
-            string ADD_MOVIE_TO_DB = "INSERT INTO [dbProject4].dbo.Movie (Title, Producer, ReleaseDate, RunTime, Budget, Gross, Rating) VALUES ('" + movie.Title + "', '" + 
+            string ADD_MOVIE_TO_DB = "INSERT INTO [dbProject4].dbo.Movie (Title, Producer, ReleaseDate, RunTime, Budget, Gross, Rating) VALUES ('" + movie.Title + "', '" +
                 movie.Producer + "', '" + movie.ReleaseYear + "', '" + movie.RunTime + "', '" + movie.Budget + "', '" + movie.Gross + "', '" + movie.Rating + "')";
             string CHECK_IF_PRODUCER_EXISTS = "SELECT Name FROM [dbProject4].dbo.Producer WHERE Name = '" + movie.Producer + "'";
             string ADD_PRODUCER_TO_DB = "INSERT INTO [dbProject4].dbo.Producer (Name) VALUES ('" + movie.Producer + "')";
@@ -48,10 +45,10 @@ namespace DBProject.Services
 
                 return flag; // false if producer doesn't exist
 
-            }            
+            }
         }
 
-        public void AddActor (Actor actor)
+        public void AddActor(Actor actor)
         {
             string ADD_ACTOR_TO_DB = "INSERT INTO [dbProject4].dbo.Actor (Name, Gender, Rating) VALUES ('" + actor.Name + "', '" + actor.Gender + "', '" + actor.Rating + "')";
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -64,7 +61,7 @@ namespace DBProject.Services
                     cmd.Connection.Close();
                 }
             }
-            
+
         }
         public void AddProducer(Producer producer)
         {
@@ -148,7 +145,7 @@ namespace DBProject.Services
         public Movie FetchMovieDetails(string movieTitle)
         {
             string GET_MOVIE_DETAILS = "SELECT * FROM [dbProject4].dbo.Movie WHERE Title = '" + movieTitle + "'";
-            
+
             Movie movie = new Movie();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -171,10 +168,10 @@ namespace DBProject.Services
             return movie;
         }
 
-        public List<ActedIn> FetchActorsForMovie (string movieTitle)
+        public List<ActedIn> FetchActorsForMovie(string movieTitle)
         {
             List<ActedIn> actors = new List<ActedIn>();
-            string GET_ACTORS_FOR_MOVIE = "SELECT Actor, CharName, Pay FROM [dbProject4].dbo.ActedIn WHERE Movie = '" + movieTitle +"' ORDER BY Pay DESC";
+            string GET_ACTORS_FOR_MOVIE = "SELECT Actor, CharName, Pay FROM [dbProject4].dbo.ActedIn WHERE Movie = '" + movieTitle + "' ORDER BY Pay DESC";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -183,7 +180,7 @@ namespace DBProject.Services
                     cmd.Connection = conn;
                     cmd.Connection.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         ActedIn actedIn = new ActedIn
                         {
@@ -200,7 +197,7 @@ namespace DBProject.Services
             return actors;
         }
 
-        public List<Movie> FetchAllMovies (string SortBy = "ReleaseDate")
+        public List<Movie> FetchAllMovies(string SortBy = "ReleaseDate")
         {
             string GET_ALL_MOVIES = "SELECT Title, Producer, ReleaseDate, Rating FROM [dbProject4].dbo.Movie ORDER BY " + SortBy;
             List<Movie> movies = new List<Movie>();
@@ -294,7 +291,7 @@ namespace DBProject.Services
             return producers;
         }
 
-        public Actor FetchActorDetails (string actorName)
+        public Actor FetchActorDetails(string actorName)
         {
             string GET_ACTOR_DETAILS = "SELECT Gender, Rating FROM [dbProject4].dbo.Actor WHERE Name = '" + actorName + "'";
 
@@ -320,7 +317,7 @@ namespace DBProject.Services
             return actor;
         }
 
-        public Producer FetchProducerDetails (string producerName)
+        public Producer FetchProducerDetails(string producerName)
         {
             string GET_PRODUCER_DETAILS = "SELECT Gender, Rating FROM [dbProject4].dbo.Producer WHERE Name = '" + producerName + "'";
 
@@ -405,8 +402,6 @@ namespace DBProject.Services
 
             return movies;
         }
-
-
 
     }
 }

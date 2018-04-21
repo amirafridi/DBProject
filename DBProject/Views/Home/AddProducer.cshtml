@@ -12,7 +12,7 @@
                 @Html.LabelFor(m => m.Name)
             </div>
             <div class="col-sm-8">
-                @Html.TextBoxFor(m => m.Name, new { @id="nameField" })
+                @Html.TextBoxFor(m => m.Name, new { @id = "nameField" })
             </div>
         </div>
         <div class="row">
@@ -20,7 +20,7 @@
                 @Html.LabelFor(m => m.Gender)
             </div>
             <div class="col-sm-8">
-                @Html.RadioButtonFor(m => m.Gender, "Male", new { @id="m" })
+                @Html.RadioButtonFor(m => m.Gender, "Male", new { @id = "m" })
                 @Html.Label("Male")
                 @Html.RadioButtonFor(m => m.Gender, "Female", new { @id = "f" })
                 @Html.Label("Female")

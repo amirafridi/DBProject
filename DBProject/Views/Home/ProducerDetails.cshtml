@@ -39,20 +39,20 @@
         </div>
         @foreach (var mov in Model.Movies)
         {
-        <div class="row ">
-            <div class="col-md-3 col-md-offset-1">
-                <a href="/Home/MovieDetails?movie=@mov.Title">@mov.Title</a>
+            <div class="row ">
+                <div class="col-md-3 col-md-offset-1">
+                    <a href="/Home/MovieDetails?movie=@mov.Title">@mov.Title</a>
+                </div>
+                <div class="col-md-3">
+                    <p>@mov.ReleaseYear</p>
+                </div>
+                <div class="col-md-2">
+                    <p>@mov.Rating</p>
+                </div>
+                <div class="col-md-2">
+                    <p>$@mov.Gross</p>
+                </div>
             </div>
-            <div class="col-md-3">
-                <p>@mov.ReleaseYear</p>
-            </div>
-            <div class="col-md-2">
-                <p>@mov.Rating</p>
-            </div>
-            <div class="col-md-2">
-                <p>$@mov.Gross</p>
-            </div>
-        </div>
         }
     </div>
 
