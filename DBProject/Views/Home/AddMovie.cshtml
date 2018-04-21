@@ -13,7 +13,7 @@
             @Html.LabelFor(m => m.Title)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, new { @id = "titleField" })
         </div>
     </div>
     <div class="row">
@@ -21,7 +21,7 @@
             @Html.LabelFor(m => m.Producer)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Producer)
+            @Html.TextBoxFor(m => m.Producer, new { @id = "producerField" })
         </div>
     </div>
     <div class="row">
@@ -29,7 +29,7 @@
             @Html.LabelFor(m => m.ReleaseYear)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.ReleaseYear)
+            @Html.TextBoxFor(m => m.ReleaseYear, new { @id = "yearField" })
         </div>
     </div>
     <div class="row">
@@ -37,7 +37,7 @@
             @Html.LabelFor(m => m.RunTime) (in minutes)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.RunTime)
+            @Html.TextBoxFor(m => m.RunTime, new { @id = "timeField" })
         </div>
     </div>
     <div class="row">
@@ -45,7 +45,7 @@
             @Html.LabelFor(m => m.Budget)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Budget)
+            @Html.TextBoxFor(m => m.Budget, new { @id = "budgetField" })
         </div>
     </div>
     <div class="row">
@@ -53,7 +53,7 @@
             @Html.LabelFor(m => m.Gross)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Gross)
+            @Html.TextBoxFor(m => m.Gross, new { @id = "grossField" })
         </div>
     </div>
     <div class="row">
@@ -61,7 +61,7 @@
             @Html.LabelFor(m => m.Rating)
         </div>
         <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Rating)
+            @Html.TextBoxFor(m => m.Rating, new { @id = "ratingField" })
         </div>
     </div>
     <div class="row">

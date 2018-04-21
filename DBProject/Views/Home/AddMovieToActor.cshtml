@@ -7,43 +7,43 @@
 
 @using (Html.BeginForm("AddMovieToActorConfirmation", "Home", FormMethod.Post, new { @onsubmit = "return addActedInValidation();" }))
 {
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            @Html.LabelFor(m => m.Actor)
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Actor)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Actor, new { @readonly = "", @id = "actorField" })
+            </div>
         </div>
-        <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Actor, new { @readonly = "" })
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Movie)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Movie, new { @id = "movieField" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.CharName)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.CharName, new { @id = "charField" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                @Html.LabelFor(m => m.Pay)
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(m => m.Pay, new { @id = "payField" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="submit" value="ADD MOVIE" />
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4">
-            @Html.LabelFor(m => m.Movie)
-        </div>
-        <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Movie)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            @Html.LabelFor(m => m.CharName)
-        </div>
-        <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.CharName)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            @Html.LabelFor(m => m.Pay)
-        </div>
-        <div class="col-sm-8">
-            @Html.TextBoxFor(m => m.Pay)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <input type="submit" value="ADD MOVIE" />
-        </div>
-    </div>
-</div>
 }
