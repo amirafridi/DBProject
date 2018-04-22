@@ -15,7 +15,9 @@ namespace DBProject.Services
         public bool AddMovie(Movie movie)
         {
             bool flag = false;
+            bool movieflag = false;
 
+            string CHECK_IF_MOVIE_EXISTS = "SELECT Title FROM [dbProject4].dbo.Movie WHERE Title = '" + movie.Title + "'";
             string ADD_MOVIE_TO_DB = "INSERT INTO [dbProject4].dbo.Movie (Title, Producer, ReleaseDate, RunTime, Budget, Gross, Rating) VALUES ('" + movie.Title + "', '" +
                 movie.Producer + "', '" + movie.ReleaseYear + "', '" + movie.RunTime + "', '" + movie.Budget + "', '" + movie.Gross + "', '" + movie.Rating + "')";
             string CHECK_IF_PRODUCER_EXISTS = "SELECT Name FROM [dbProject4].dbo.Producer WHERE Name = '" + movie.Producer + "'";
@@ -23,12 +25,26 @@ namespace DBProject.Services
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(ADD_MOVIE_TO_DB))
+                using (SqlCommand cmd = new SqlCommand(CHECK_IF_MOVIE_EXISTS))
                 {
                     cmd.Connection = conn;
                     cmd.Connection.Open();
-                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        movieflag = true;
+                    }
                     cmd.Connection.Close();
+                }
+                if (!movieflag)
+                {
+                    using (SqlCommand cmd = new SqlCommand(ADD_MOVIE_TO_DB))
+                    {
+                        cmd.Connection = conn;
+                        cmd.Connection.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+                    }
                 }
 
                 using (SqlCommand cmd = new SqlCommand(CHECK_IF_PRODUCER_EXISTS))
@@ -50,30 +66,63 @@ namespace DBProject.Services
 
         public void AddActor(Actor actor)
         {
+            string CHECK_IF_ACTOR_EXISTS = "SELECT Name FROM [dbProject4].dbo.Actor WHERE Name = '" + actor.Name + "'";
             string ADD_ACTOR_TO_DB = "INSERT INTO [dbProject4].dbo.Actor (Name, Gender, Rating) VALUES ('" + actor.Name + "', '" + actor.Gender + "', '" + actor.Rating + "')";
+            bool flag = true;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(ADD_ACTOR_TO_DB))
+                using (SqlCommand cmd = new SqlCommand(CHECK_IF_ACTOR_EXISTS))
                 {
                     cmd.Connection = conn;
                     cmd.Connection.Open();
-                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        flag = false;
+                    }
                     cmd.Connection.Close();
                 }
+                if (flag)
+                {
+                    using (SqlCommand cmd = new SqlCommand(ADD_ACTOR_TO_DB))
+                    {
+                        cmd.Connection = conn;
+                        cmd.Connection.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+                    }
+                }
+
             }
 
         }
         public void AddProducer(Producer producer)
         {
+            string CHECK_IF_PRODUCER_EXISTS = "SELECT Name FROM [dbProject4].dbo.Producer WHERE Name = '" + producer.Name + "'";
             string ADD_PRODUCER_TO_DB = "INSERT INTO [dbProject4].dbo.Producer (Name, Gender, Rating) VALUES ('" + producer.Name + "', '" + producer.Gender + "', '" + producer.Rating + "')";
+            bool flag = true;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(ADD_PRODUCER_TO_DB))
+                using (SqlCommand cmd = new SqlCommand(CHECK_IF_PRODUCER_EXISTS))
                 {
                     cmd.Connection = conn;
                     cmd.Connection.Open();
-                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        flag = false;
+                    }
                     cmd.Connection.Close();
+                }
+                if (flag)
+                {
+                    using (SqlCommand cmd = new SqlCommand(ADD_PRODUCER_TO_DB))
+                    {
+                        cmd.Connection = conn;
+                        cmd.Connection.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd.Connection.Close();
+                    }
                 }
             }
         }
