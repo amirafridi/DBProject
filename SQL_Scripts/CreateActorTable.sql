@@ -10,6 +10,8 @@ GO
 
 CREATE TABLE [dbo].[Actor](
 	[Name] [varchar](50) NOT NULL,
+	[Gender] [varchar](50) NOT NULL,
+	[Rating] [int] NOT NULL,
 	PRIMARY KEY (Name)
 ) ON [PRIMARY]
 GO
