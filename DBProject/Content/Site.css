@@ -1,4 +1,7 @@
 ﻿body {
+    background-image: url("../img/movieimg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -48,4 +51,11 @@ h3 {
 
 .even {
     background-color: #EEEEEE;
+}
+.odd {
+    background: white;  
+}
+
+.container {
+    background-color: white;
 }

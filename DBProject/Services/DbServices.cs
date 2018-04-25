@@ -10,7 +10,7 @@ namespace DBProject.Services
 {
     public class DbServices
     {
-        public const string connectionString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+        public const string connectionString = "Server=DESKTOP-IHEUFHU\\MYSERVER;Database=dbProject4;Trusted_Connection=True;";
 
         public bool AddMovie(Movie movie)
         {
